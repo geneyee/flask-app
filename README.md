@@ -1,1 +1,1 @@
-test용 commit
+test용 commit.
