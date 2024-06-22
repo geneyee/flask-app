@@ -29,5 +29,19 @@ jobs:
     - name: Build Docker image
       run: |
         docker build -t flask-app:latest .
+        
+    - name: Run Docker container
+      run: |
+        docker run -d -p 5000:5000 --name flask-app-container flask-app:latest
     
+    - name: Test application
+      run: |
+        sleep 5 # Give the container some time to start
+        curl http://localhost:5000
+        
+    - name: Stop and remove container
+      run: |
+        docker stop flask-app-container
+        docker rm flask-app-container
+
     # Optional: Add additional steps to push the Docker image to a registry like Docker Hub
